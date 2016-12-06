@@ -34,7 +34,7 @@ ThemeAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->settings->get('general.title', 'Yee Site', Yii::$app->language),
+        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>'Star Roots']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -72,29 +72,29 @@ ThemeAsset::register($this);
             <div class="col-md-3">
                 <div class="hidden-xs">
                     <?php
-                        $menuItemsKey = '__mainMenuItems' . Yii::$app->language;
-                        if(!$menuItems = Yii::$app->cache->get($menuItemsKey)){
-                            $menuItems = Menu::getMenuItems('main-menu');
-                            Yii::$app->cache->set($menuItemsKey, $menuItems, 3600);
-                        }
-                    
-                        echo Navigation::widget([
-                            'encodeLabels' => false,
-                            'items' => $menuItems,
-                            'options' => [
-                                ['class' => 'nav nav-pills nav-stacked'],
-                                ['class' => 'nav nav-second-level'],
-                                ['class' => 'nav nav-third-level']
-                            ],
-                        ]);
+//                        $menuItemsKey = '__mainMenuItems' . Yii::$app->language;
+//                        if(!$menuItems = Yii::$app->cache->get($menuItemsKey)){
+//                            $menuItems = Menu::getMenuItems('main-menu');
+//                            Yii::$app->cache->set($menuItemsKey, $menuItems, 3600);
+//                        }
+//
+//                        echo Navigation::widget([
+//                            'encodeLabels' => false,
+//                            'items' => $menuItems,
+//                            'options' => [
+//                                ['class' => 'nav nav-pills nav-stacked'],
+//                                ['class' => 'nav nav-second-level'],
+//                                ['class' => 'nav nav-third-level']
+//                            ],
+//                        ]);
                     ?>
                 </div>
                 
-                <div>
-                    <?= RecentComments::widget() ?>
-                </div>
+<!--                <div>-->
+<!--                    --><?//= RecentComments::widget() ?>
+<!--                </div>-->
             </div>
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
                 <?= Alert::widget() ?>
                 <?= $content ?>

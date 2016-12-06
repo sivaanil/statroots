@@ -5312,6 +5312,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-brand > img {
     display: block;
+    width: 100px
 }
 
 @media (min-width: 768px) {
@@ -5711,8 +5712,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-    color: #333333;
-    background-color: transparent;
+    color: white;
+    background-color: #38B8BE;
 }
 
 .navbar-inverse .navbar-nav > .disabled > a,

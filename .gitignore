@@ -1,5 +1,5 @@
 # yii console command
-/yii
+
 
 # phpstorm project files
 .idea
@@ -16,7 +16,7 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-/vendor
+
 
 # composer itself is not needed
 composer.phar

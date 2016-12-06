@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a68d1da50b281054157c2bb760867b16",
-    "content-hash": "f9a651a100b00a4aa5f6211bc61d3e49",
+    "hash": "b38b41c168471748631c01bd1cab52f6",
+    "content-hash": "5822e7cccd1fb473be55fea8799a683d",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -444,16 +444,16 @@
         },
         {
             "name": "bower-asset/metisMenu",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metisMenu.git",
-                "reference": "c7cdec4a87ae6f192c2955ed6016450e7455a894"
+                "reference": "662528114386eb025f3992e41a90c75699bb5926"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onokumus/metisMenu/zipball/c7cdec4a87ae6f192c2955ed6016450e7455a894",
-                "reference": "c7cdec4a87ae6f192c2955ed6016450e7455a894",
+                "url": "https://api.github.com/repos/onokumus/metisMenu/zipball/662528114386eb025f3992e41a90c75699bb5926",
+                "reference": "662528114386eb025f3992e41a90c75699bb5926",
                 "shasum": ""
             },
             "require": {
@@ -1380,6 +1380,42 @@
             "time": "2016-09-11 08:36:40"
         },
         {
+            "name": "yeesoft/yii2-yee-block",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yeesoft/yii2-yee-block.git",
+                "reference": "297ea8e9749c06ca6a877b0cb8e24f84917c89aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yeesoft/yii2-yee-block/zipball/297ea8e9749c06ca6a877b0cb8e24f84917c89aa",
+                "reference": "297ea8e9749c06ca6a877b0cb8e24f84917c89aa",
+                "shasum": ""
+            },
+            "require": {
+                "yeesoft/yii2-yee-core": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "yeesoft\\block\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Taras Makitra",
+                    "email": "makitrataras@gmail.com"
+                }
+            ],
+            "description": "HTML Block Module For Yee CMS",
+            "time": "2016-06-05 15:04:30"
+        },
+        {
             "name": "yeesoft/yii2-yee-comment",
             "version": "dev-master",
             "source": {
@@ -1456,6 +1492,39 @@
             ],
             "description": "Core Module For Yee CMS",
             "time": "2016-10-14 13:50:12"
+        },
+        {
+            "name": "yeesoft/yii2-yee-generator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yeesoft/yii2-yee-generator.git",
+                "reference": "26a212bf301f35191bca49a8c2c8257865241f4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yeesoft/yii2-yee-generator/zipball/26a212bf301f35191bca49a8c2c8257865241f4e",
+                "reference": "26a212bf301f35191bca49a8c2c8257865241f4e",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yeesoft\\generator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "YeeSoft",
+                    "email": "makitrataras@gmail.com"
+                }
+            ],
+            "description": "Yee Gii Generators",
+            "time": "2016-05-17 20:27:24"
         },
         {
             "name": "yeesoft/yii2-yee-media",

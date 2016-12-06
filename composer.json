@@ -37,7 +37,9 @@
     "yeesoft/yii2-yee-page": "*",
     "yeesoft/yii2-yee-seo": "*",
     "yeesoft/yii2-comments": "*",
-    "yeesoft/yii2-yee-comment": "*"
+    "yeesoft/yii2-yee-comment": "*",
+    "yeesoft/yii2-yee-generator": "*",
+    "yeesoft/yii2-yee-block": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

@@ -32,6 +32,17 @@ return [
                 }
                 return false;
             }
+        ],'gii' => [
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => ['*'],
+            'generators' => [
+                'yee-crud' => [
+                    'class' => 'yeesoft\generator\crud\Generator',
+                    'templates' => [
+                        'default' => '@vendor/yeesoft/yii2-yee-generator/crud/yee-admin',
+                    ]
+                ],
+            ],
         ],
     ],
 ];
