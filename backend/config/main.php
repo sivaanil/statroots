@@ -47,6 +47,9 @@ return [
         ],
         'block' => [
             'class' => 'yeesoft\block\BlockModule',
+        ],
+        'training' => [
+            'class' => 'yeesoft\training\TrainingModule',
         ]
     ],
     'components' => [
