@@ -42,7 +42,6 @@ class SiteController extends \yeesoft\controllers\BaseController
     {
         // display home page
         if (empty($slug) || $slug == 'index') {
-
             $query = Post::find()->where(['status' => Post::STATUS_PUBLISHED]);
             $countQuery = clone $query;
 
@@ -50,7 +49,6 @@ class SiteController extends \yeesoft\controllers\BaseController
                 'totalCount' => $countQuery->count(),
                 'defaultPageSize' => Yii::$app->settings->get('reading.page_size', 10),
             ]);
-
             $posts = $query->orderBy('published_at DESC')->offset($pagination->offset)
                 ->limit($pagination->limit)
                 ->all();
@@ -85,10 +83,12 @@ class SiteController extends \yeesoft\controllers\BaseController
         }
 
         //try to display post from datebase
-        $post = Post::getDb()->cache(function ($db) use ($slug) {
+        $post = Post::getDb()->noCache(function ($db) use ($slug) {
             return Post::findOne(['slug' => $slug, 'status' => Post::STATUS_PUBLISHED]);
         }, 3600);
-
+//        echo "<pre>";
+//        print_r($post);
+//        exit;
         if ($post) {
             $postAction = new PostAction($slug, $this, [
                 'slug'   => $slug,

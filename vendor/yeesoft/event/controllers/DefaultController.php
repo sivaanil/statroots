@@ -1,8 +1,9 @@
 <?php
 
-namespace yeesoft\training\controllers;
+namespace yeesoft\event\controllers;
 
 use yeesoft\controllers\admin\BaseController;
+use yeesoft\event\models\Events;
 use yeesoft\models\User;
 
 /**
@@ -22,6 +23,11 @@ class DefaultController extends BaseController
     public function actionIndex()
     {
         return $this->render("index");
+    }
+
+    public function actionCreate(){
+        $model = new Events();
+        return $this->render("create",array('model' => $model));
     }
 
 

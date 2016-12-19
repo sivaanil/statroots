@@ -23,7 +23,6 @@ $this->title = 'Homepage';
     <div class="body-content">
 
         <?php /* @var $post yeesoft\post\models\Post */
-        echo Block::getHtml('test', ['link' => 'http://www.example.com/', 'title' => 'Example Site']);
         echo Carousel::widget([
             'items' => [
                 // the item contains only the image
@@ -42,6 +41,7 @@ $this->title = 'Homepage';
             ]);
 
         ?>
+        <?php echo Block::getHtml('services', ['link' => 'http://www.example.com/', 'title' => 'Example Site']); ?>
         <?php foreach ($posts as $post) : ?>
             <?= $this->render('/items/post.php', ['post' => $post, 'page' => 'index']) ?>
         <?php endforeach; ?>

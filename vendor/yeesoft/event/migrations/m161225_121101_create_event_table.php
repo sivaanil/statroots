@@ -2,13 +2,10 @@
 
 use yii\db\Migration;
 
-class m150630_121101_create_post_table extends Migration
+class m161225_121101_create_event_table extends Migration
 {
-    const POST_TABLE = '{{%post}}';
-    const POST_LANG_TABLE = '{{%post_lang}}';
-    const POST_CATEGORY_TABLE = '{{%post_category}}';
-    const POST_CATEGORY_LANG_TABLE = '{{%post_category_lang}}';
-    
+    const EVENT_TABLE = '{{%events}}';
+
     public function safeUp()
     {
         $tableOptions = null;
@@ -16,26 +13,17 @@ class m150630_121101_create_post_table extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
-        $this->createTable(self::POST_CATEGORY_TABLE, [
+        $this->createTable(self::EVENT_TABLE, [
             'id' => $this->primaryKey(),
-            'slug' => $this->string(200)->notNull(),
-            'visible' => $this->integer()->notNull()->defaultValue(1)->comment('0-hidden,1-visible'),
+            'title' => $this->string(255)->notNull(),
+            'content' => $this->text(),
+            'nominate' => "ENUM('0','1')",
             'created_at' => $this->integer(),
-            'updated_at' => $this->integer(),
-            'created_by' => $this->integer(),
-            'updated_by' => $this->integer(),
-            'left_border' => $this->integer()->notNull(),
-            'right_border' => $this->integer()->notNull(),
-            'depth' => $this->integer()->notNull(),
         ], $tableOptions);
         
-        $this->createIndex('post_category_slug', self::POST_CATEGORY_TABLE, 'slug');
-        $this->createIndex('post_category_visible', self::POST_CATEGORY_TABLE, 'visible');
-        $this->createIndex('left_border', self::POST_CATEGORY_TABLE, ['left_border', 'right_border']);
-        $this->createIndex('right_border', self::POST_CATEGORY_TABLE, ['right_border']);
+
         $this->addForeignKey('fk_post_category_created_by', self::POST_CATEGORY_TABLE, 'created_by', '{{%user}}', 'id', 'SET NULL', 'CASCADE');
-        $this->addForeignKey('fk_post_category_updated_by', self::POST_CATEGORY_TABLE, 'updated_by', '{{%user}}', 'id', 'SET NULL', 'CASCADE');
-        $this->insert(self::POST_CATEGORY_TABLE, ['id' => 1, 'slug' => 'root', 'depth' => 0, 'created_at' => time(), 'visible' => 0, 'left_border' => 0, 'right_border' => 2147483647]);
+        $this->insert(self::EVENT_TABLE, ['created_at' => time()]);
 
         $this->createTable(self::POST_CATEGORY_LANG_TABLE, [
             'id' => $this->primaryKey(),
@@ -86,19 +74,6 @@ class m150630_121101_create_post_table extends Migration
 
     public function safeDown()
     {
-        $this->dropForeignKey('fk_post_category_id', self::POST_TABLE);
-        $this->dropForeignKey('fk_post_created_by', self::POST_TABLE);
-        $this->dropForeignKey('fk_post_updated_by', self::POST_TABLE);
-        $this->dropForeignKey('fk_post_lang', self::POST_LANG_TABLE);
-
-        $this->dropForeignKey('fk_post_category_lang', self::POST_CATEGORY_LANG_TABLE);
-        $this->dropForeignKey('fk_post_category_created_by', self::POST_CATEGORY_TABLE);
-        $this->dropForeignKey('fk_post_category_updated_by', self::POST_CATEGORY_TABLE);
-
         $this->dropTable(self::POST_CATEGORY_LANG_TABLE);
-        $this->dropTable(self::POST_CATEGORY_TABLE);
-
-        $this->dropTable(self::POST_LANG_TABLE);
-        $this->dropTable(self::POST_TABLE);
     }
 }

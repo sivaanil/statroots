@@ -5,7 +5,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0
  */
 
-namespace yeesoft\training;
+namespace yeesoft\event;
 
 use Yii;
 
@@ -14,14 +14,14 @@ use Yii;
  *
  * @author Taras Makitra <makitrataras@gmail.com>
  */
-class TrainingModule extends \yii\base\Module
+class EventModule extends \yii\base\Module
 {
     /**
      * Version number of the module.
      */
     const VERSION = '0.1.0';
 
-    public $controllerNamespace = 'yeesoft\training\controllers';
+    public $controllerNamespace = 'yeesoft\event\controllers';
 
 
     public function init()
