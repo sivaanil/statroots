@@ -1,0 +1,4 @@
+[17-Dec-2016 14:15:07 Asia/Kolkata] PHP Parse error:  syntax error, unexpected '<' in /home/starroots/public_html/frontend/views/site/index.php on line 29
+[17-Dec-2016 14:15:28 Asia/Kolkata] PHP Fatal error:  Class 'Html' not found in /home/starroots/public_html/frontend/views/site/index.php on line 29
+[17-Dec-2016 14:15:29 Asia/Kolkata] PHP Fatal error:  Class 'Html' not found in /home/starroots/public_html/frontend/views/site/index.php on line 29
+[17-Dec-2016 14:15:31 Asia/Kolkata] PHP Fatal error:  Class 'Html' not found in /home/starroots/public_html/frontend/views/site/index.php on line 29

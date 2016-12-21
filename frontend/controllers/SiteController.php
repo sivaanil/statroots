@@ -136,4 +136,9 @@ class SiteController extends \yeesoft\controllers\BaseController
     {
         return $this->render('about');
     }
+
+public function actionNominate()
+    {
+        return $this->render('nominate');
+    }
 }
