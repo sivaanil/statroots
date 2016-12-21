@@ -443,7 +443,7 @@ class Connection extends Component
      * Queries performed within the callable will not use query cache at all. For example,
      *
      * ```php
-     * $db->cache(function (Connection $db) {
+     $db->cache(function (Connection $db) {
      *
      *     // ... queries that use query cache ...
      *
