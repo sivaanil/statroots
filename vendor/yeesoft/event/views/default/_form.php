@@ -45,8 +45,6 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'is_upcoming')->checkbox(); ?>
 
-                        <?= $form->field($model, 'created_date')->hiddenInput() ?>
-
 
                     </div>
                 </div>

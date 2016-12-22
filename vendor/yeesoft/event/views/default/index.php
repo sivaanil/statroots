@@ -65,7 +65,19 @@ $this->params['breadcrumbs'][] = 'Events';
                         'title' => function (\yeesoft\event\models\Events $model) {
                             return Html::a($model->title, ['/event/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
-                    ]
+                    ],
+                    [
+                        'label' => 'Current Status',
+                        'attribute' => 'status',
+                        'value' => function ($model) {
+                            if($model->status == 1){
+                                return "Activate";
+                            }if($model->status == 0){
+                                return "Deactivate";
+                            }
+
+                        },
+                    ],
                 ],
             ]);
             ?>

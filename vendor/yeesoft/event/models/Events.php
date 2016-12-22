@@ -60,7 +60,7 @@ class Events extends \yii\db\ActiveRecord
         return ($this->getBehavior('multilingual') !== NULL);
     }
 
-    public function changeStatus($ids,$status){
+    public static function changeStatus($ids,$status){
         $ids = implode(",",$ids);
         if($status == 'activate'){
             \Yii::$app->db->createCommand("UPDATE events SET status='1' WHERE id IN ($ids)")
