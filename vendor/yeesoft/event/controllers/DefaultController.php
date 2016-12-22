@@ -27,6 +27,16 @@ class DefaultController extends BaseController
 
     public function actionCreate(){
         $model = new Events();
+        if(\Yii::$app->request->isPost){
+
+            $model->attributes = $_POST['Events'];
+            $model->save();
+            echo "<pre>";
+            print_r($_POST);
+
+            print_r($model->attributes);
+            exit;
+        }
         return $this->render("create",array('model' => $model));
     }
 

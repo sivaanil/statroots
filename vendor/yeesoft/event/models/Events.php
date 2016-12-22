@@ -35,6 +35,7 @@ class Events extends \yii\db\ActiveRecord
             [['content', 'nominate', 'is_upcoming'], 'string'],
             [['event_date', 'created_date'], 'safe'],
             [['title'], 'string', 'max' => 255],
+            [['event_date'], 'date', 'format' => 'php:Y-m-d']
         ];
     }
 

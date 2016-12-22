@@ -39,10 +39,9 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
+                        <?= $form->field($model,'event_date')->widget(DatePicker::className(),['clientOptions' => ['php:m/d/Y']]) ?>
+
                         <?= $form->field($model, 'nominate')->checkbox(); ?>
-
-
-                        <?= $form->field($model, 'event_date')->textInput() ?>
 
                         <?= $form->field($model, 'is_upcoming')->checkbox(); ?>
 
@@ -70,7 +69,7 @@ use yeesoft\post\models\Tag;
                             <div class="form-group">
                                 <?php if ($model->isNewRecord): ?>
                                     <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                    <?= Html::a(Yii::t('yee', 'Cancel'), ['/post/default/index'], ['class' => 'btn btn-default']) ?>
+                                    <?= Html::a(Yii::t('yee', 'Cancel'), ['/event/default/create'], ['class' => 'btn btn-default']) ?>
                                 <?php else: ?>
                                     <?= Html::submitButton(Yii::t('yee', 'Save'), ['class' => 'btn btn-primary']) ?>
                                     <?= Html::a(Yii::t('yee', 'Delete'), ['/post/default/delete', 'id' => $model->id], [
