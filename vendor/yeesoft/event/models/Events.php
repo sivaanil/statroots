@@ -3,6 +3,7 @@
 namespace yeesoft\event\models;
 
 use Yii;
+use yeesoft\models\OwnerAccess;
 
 /**
  * This is the model class for table "events".
@@ -34,8 +35,7 @@ class Events extends \yii\db\ActiveRecord
             [['title', 'content', 'event_date', 'created_date'], 'required'],
             [['content', 'nominate', 'is_upcoming'], 'string'],
             [['event_date', 'created_date'], 'safe'],
-            [['title'], 'string', 'max' => 255],
-            [['event_date'], 'date', 'format' => 'php:Y-m-d']
+            [['title'], 'string', 'max' => 255]
         ];
     }
 
@@ -58,5 +58,18 @@ class Events extends \yii\db\ActiveRecord
     public function isMultilingual()
     {
         return ($this->getBehavior('multilingual') !== NULL);
+    }
+
+    public function changeStatus($ids,$status){
+        $ids = implode(",",$ids);
+        if($status == 'activate'){
+            \Yii::$app->db->createCommand("UPDATE events SET status='1' WHERE id IN ($ids)")
+                ->execute();
+
+        }if ($status == 'deactivate'){
+            \Yii::$app->db->createCommand("UPDATE events SET status='0' WHERE id IN ($ids)")
+                ->execute();
+
+        }
     }
 }

@@ -39,11 +39,13 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-                        <?= $form->field($model,'event_date')->widget(DatePicker::className(),['clientOptions' => ['php:m/d/Y']]) ?>
+                        <?= $form->field($model,'event_date')->widget(DatePicker::className(),['clientOptions' => ['dateFormat' => 'Y/m/d']]) ?>
 
                         <?= $form->field($model, 'nominate')->checkbox(); ?>
 
                         <?= $form->field($model, 'is_upcoming')->checkbox(); ?>
+
+                        <?= $form->field($model, 'created_date')->hiddenInput() ?>
 
 
                     </div>
@@ -55,17 +57,6 @@ use yeesoft\post\models\Tag;
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="record-info">
-                            <?php if (!$model->isNewRecord): ?>
-
-                                <div class="form-group clearfix">
-                                    <label class="control-label" style="float: left; padding-right: 5px;">
-                                        <?= $model->attributeLabels()['created_at'] ?> :
-                                    </label>
-                                    <span><?= $model->createdDatetime ?></span>
-                                </div>
-
-                            <?php endif; ?>
-
                             <div class="form-group">
                                 <?php if ($model->isNewRecord): ?>
                                     <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>

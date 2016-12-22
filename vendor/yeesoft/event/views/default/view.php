@@ -1,43 +1,45 @@
 <?php
 
 use yeesoft\helpers\Html;
-
-/* @var $this yii\web\View */
-/* @var $model common\models\Post */
+use yii\widgets\DetailView;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/post', 'Posts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Events'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-view">
+<div class="events-view">
 
-    <h3 class="lte-hide-title"><?= Html::encode($this->title) ?></h3>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="panel panel-default">
-        <div class="panel-body">
+    <p>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
 
-            <?= Html::a(Yii::t('yee', 'Edit'), ['/post/default/update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'title',
+            'content:ntext',
+            'event_date',
+            'created_date',
+            [
+                'attribute' => 'nominate',
+                'value'=> $model->nominate == 1 ? 'Yes' : 'No'
+            ],
+            [
+                'attribute' => 'is_upcoming',
+                'value'=> $model->is_upcoming == 1 ? 'Yes' : 'No'
+            ],
 
-            <?= Html::a(Yii::t('yee', 'Delete'), ['/post/default/delete', 'id' => $model->id], [
-                'class' => 'btn btn-sm btn-default',
-                'data' => [
-                    'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ]) ?>
-
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/post/default/create'], ['class' => 'btn btn-sm btn-primary pull-right']) ?>
-
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h2><?= $model->title ?></h2>
-            <?= $model->getThumbnail(['class' => 'thumbnail pull-left', 'style' => 'width: 240px; margin:0 7px 7px 0;']) ?>
-            <?= $model->content ?>
-        </div>
-    </div>
-
+        ],
+    ]) ?>
 
 </div>

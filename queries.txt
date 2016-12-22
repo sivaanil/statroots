@@ -6,5 +6,6 @@ CREATE TABLE `events` (
  `event_date` datetime NOT NULL,
  `created_date` datetime NOT NULL,
  `is_upcoming` enum('0','1') NOT NULL DEFAULT '0',
+ `status` enum('0','1') NOT NULL DEFAULT '1',
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
