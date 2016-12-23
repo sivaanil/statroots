@@ -65,7 +65,8 @@ $this->params['breadcrumbs'][] = 'Events';
                         'title' => function (\yeesoft\event\models\Events $model) {
                             return Html::a($model->title, ['/event/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
-                    ]
+                    ],
+                    'status'
                 ],
             ]);
             ?>

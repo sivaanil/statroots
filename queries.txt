@@ -1,3 +1,5 @@
+// Events Table Creation
+
 CREATE TABLE `events` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `title` varchar(255) NOT NULL,
@@ -9,3 +11,6 @@ CREATE TABLE `events` (
  `status` enum('0','1') NOT NULL DEFAULT '1',
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
+
+// Adding image path to the events table
+ALTER TABLE  `events` ADD  `display_image` VARCHAR( 255 ) NULL AFTER  `event_date` ;

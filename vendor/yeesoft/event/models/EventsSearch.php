@@ -19,7 +19,7 @@ class EventsSearch extends Events
     {
         return [
             [['id'], 'integer'],
-            [['title', 'content', 'nominate', 'event_date', 'created_date', 'is_upcoming'], 'safe'],
+            [['title', 'content', 'nominate', 'event_date', 'created_date', 'is_upcoming','display_image'], 'safe'],
         ];
     }
 

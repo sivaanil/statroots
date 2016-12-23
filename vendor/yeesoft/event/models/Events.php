@@ -18,6 +18,7 @@ use yeesoft\models\OwnerAccess;
  */
 class Events extends \yii\db\ActiveRecord
 {
+    public $thumbnail;
     /**
      * @inheritdoc
      */
@@ -35,7 +36,8 @@ class Events extends \yii\db\ActiveRecord
             [['title', 'content', 'event_date', 'created_date'], 'required'],
             [['content', 'nominate', 'is_upcoming'], 'string'],
             [['event_date', 'created_date'], 'safe'],
-            [['title'], 'string', 'max' => 255]
+            [['title'], 'string', 'max' => 255],
+            [['display_image'], 'string', 'max' => 255]
         ];
     }
 
@@ -50,8 +52,9 @@ class Events extends \yii\db\ActiveRecord
             'content' => 'Content',
             'nominate' => 'Nominate',
             'event_date' => 'Event Date',
+            'display_image' => 'Display Image',
             'created_date' => 'Created Date',
-            'is_upcoming' => 'Is Upcoming',
+            'is_upcoming' => 'Is Upcoming'
         ];
     }
 

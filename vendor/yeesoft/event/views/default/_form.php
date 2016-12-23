@@ -45,8 +45,6 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'is_upcoming')->checkbox(); ?>
 
-                        <?= $form->field($model, 'created_date')->hiddenInput() ?>
-
 
                     </div>
                 </div>
@@ -57,6 +55,22 @@ use yeesoft\post\models\Tag;
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="record-info">
+                            <div class="record-info">
+                                <?= $form->field($model, 'display_image')->widget(yeesoft\media\widgets\FileInput::className(), [
+                                    'name' => 'image',
+                                    'buttonTag' => 'button',
+                                    'buttonName' => Yii::t('yee', 'Browse'),
+                                    'buttonOptions' => ['class' => 'btn btn-default btn-file-input'],
+                                    'options' => ['class' => 'form-control'],
+                                    'template' => '<div class="post-thumbnail thumbnail"></div><div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+                                    'thumb' => 100,
+                                    'imageContainer' => '.post-thumbnail',
+                                    'pasteData' => yeesoft\media\widgets\FileInput::DATA_URL,
+                                    'callbackBeforeInsert' => 'function(e, data) {
+                                $(".post-thumbnail").show();
+                            }',
+                                ]) ?>
+                            </div>
                             <div class="form-group">
                                 <?php if ($model->isNewRecord): ?>
                                     <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
@@ -97,8 +111,8 @@ CSS;
 
 $js = <<<JS
     var thumbnail = $("#post-thumbnail").val();
-    if(thumbnail.length == 0){
-        $('.post-thumbnail').hide();
+    if(!thumbnail){
+            $('.post-thumbnail').hide();
     } else {
         $('.post-thumbnail').html('<img src="' + thumbnail + '" />');
     }

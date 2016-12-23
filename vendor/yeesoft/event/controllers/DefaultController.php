@@ -29,12 +29,15 @@ class DefaultController extends BaseController
 
     public function actionIndex()
     {
-        $searchModel = new EventsSearch();
-        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(\Yii::$app->user->isSuperadmin){
+            $searchModel = new EventsSearch();
+            $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+
     }
 
     /**
@@ -45,7 +48,7 @@ class DefaultController extends BaseController
 
     public function actionCreate(){
         $model = new Events();
-        if(\Yii::$app->request->isPost){
+        if(\Yii::$app->request->isPost && \Yii::$app->user->isSuperadmin){
 
             $model->attributes = $_POST['Events'];
             $model->event_date =\Yii::$app->formatter->asDatetime($model->event_date, 'yyyy-MM-dd 00:00:00');
@@ -66,9 +69,11 @@ class DefaultController extends BaseController
 
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(\Yii::$app->user->isSuperadmin){
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
     }
 
     /**
@@ -80,14 +85,18 @@ class DefaultController extends BaseController
 
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if(\Yii::$app->user->isSuperadmin) {
+            $model = $this->findModel($id);
 
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            if (\Yii::$app->request->post()) {
+                $model->event_date = \Yii::$app->formatter->asDatetime($model->event_date, 'yyyy-MM-dd 00:00:00');
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
         }
     }
     /**
@@ -99,9 +108,10 @@ class DefaultController extends BaseController
 
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if(\Yii::$app->user->isSuperadmin) {
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);
+        }
     }
 
     public function actionChangestatus(){
