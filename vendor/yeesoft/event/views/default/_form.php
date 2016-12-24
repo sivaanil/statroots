@@ -110,11 +110,13 @@ $css = <<<CSS
 CSS;
 
 $js = <<<JS
-    var thumbnail = $("#post-thumbnail").val();
+    var thumbnail = $("#events-display_image").val();
+    
     if(!thumbnail){
             $('.post-thumbnail').hide();
     } else {
         $('.post-thumbnail').html('<img src="' + thumbnail + '" />');
+        $('#events-display_image').val('');
     }
 JS;
 

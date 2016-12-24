@@ -38,6 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'is_upcoming',
                 'value'=> $model->is_upcoming == 1 ? 'Yes' : 'No'
             ],
+            [
+                'attribute'=>'display_image',
+                'value'=>$model->display_image,
+                'format' => ['image',['width'=>'100','height'=>'100']],
+            ],
 
         ],
     ]) ?>
