@@ -75,4 +75,11 @@ class Events extends \yii\db\ActiveRecord
 
         }
     }
+
+    public static function deleteEvents($ids){
+        $ids = implode(",",$ids);
+        \Yii::$app->db->createCommand("DELETE from events WHERE id IN ($ids)")
+            ->execute();
+        return true;
+    }
 }

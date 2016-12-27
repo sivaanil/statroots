@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Post */
 
-$this->title = Yii::t('yee', 'Create {item}', ['item' => Yii::t('yee/post', 'Post')]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/post', 'Posts'), 'url' => ['index']];
+$this->title = Yii::t('yee', 'Create {item}', ['item' => Yii::t('yee/event', 'Event')]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('yee/event', 'Events'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-create">

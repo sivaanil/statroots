@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = 'Events';
                     'actions' => [
                         Url::to(['changestatus?status=activate']) => Yii::t('yee', 'Activate'),
                         Url::to(['changestatus?status=deactivate']) => Yii::t('yee', 'Deactivate'),
-                        Url::to(['bulk-delete']) => Yii::t('yii', 'Delete'),
+                        Url::to(['bulkdelete']) => Yii::t('yii', 'Delete'),
                     ]
                 ],
                 'columns' => [
@@ -66,6 +66,9 @@ $this->params['breadcrumbs'][] = 'Events';
                             return Html::a($model->title, ['/event/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                     ],
+                    'content',
+                    'created_date',
+                    'event_date',
                     [
                         'label' => 'Current Status',
                         'attribute' => 'status',

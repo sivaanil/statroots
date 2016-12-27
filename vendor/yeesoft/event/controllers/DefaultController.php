@@ -89,6 +89,7 @@ class DefaultController extends BaseController
             $model = $this->findModel($id);
 
             if (\Yii::$app->request->post()) {
+                $model->attributes = \Yii::$app->request->post('Events');
                 $model->event_date = \Yii::$app->formatter->asDatetime($model->event_date, 'yyyy-MM-dd 00:00:00');
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -118,8 +119,15 @@ class DefaultController extends BaseController
         if(\Yii::$app->request->isPost && \Yii::$app->user->isSuperadmin){
             $ids = \Yii::$app->request->post('selection');
             $status = \Yii::$app->request->get('status');
-            $changeStatus = Events::changeStatus($ids,$status);
+            Events::changeStatus($ids,$status);
+        }
 
+    }
+
+    public function actionBulkdelete(){
+        if(\Yii::$app->request->isPost && \Yii::$app->user->isSuperadmin){
+            $ids = \Yii::$app->request->post('selection');
+            Events::deleteEvents($ids);
         }
 
     }
