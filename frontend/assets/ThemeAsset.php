@@ -15,9 +15,16 @@ class ThemeAsset extends AssetBundle
 {
 
     public $css = [
-        'css/theme.css',
+        'css/res-muliti-menu.css',
+        'css/slick.css',
+        'css/slick-theme.css',
+        'css/style.css'
     ];
     public $js = [
+        'js/bootstrap.min.js',
+        'js/jquery.mobile.custom.min.js',
+        'js/res-muliti-menu.js',
+        'js/slick.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

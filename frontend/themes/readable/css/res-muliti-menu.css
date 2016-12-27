@@ -1,0 +1,20 @@
+#main-nav-toggle ul li span {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 15px;
+    height: 30px;
+    display: block;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    font-size: 14px;
+    color: #118F99;
+}
+
+@media only screen and (max-width:767px) {
+    #main-nav-toggle ul li span {
+        display: block;
+    }
+}
