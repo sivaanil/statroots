@@ -1,0 +1,6 @@
+where an end user can submit the testimonial ?
+Events auto scroll / should there be a limit ?
+Login Page should be there both normally and in modal popup ?
+How to segregate Current and Upcoming events ?
+Nominate button placement ?
+What to show in Event Individual page when user clicks on read more ? Shall we put short description about the event in main page and full content in the detail view ?

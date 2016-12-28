@@ -142,15 +142,17 @@ $this->title = 'Homepage';
         <div class="col-sm-12">
             <div class="headingstyle"><span class="db-underline">News & Events</span></div>
             <div class="row">
+                <?php
+                    foreach ($events as $event){ ?>
                 <div class="col-sm-4">
                     <a href="">
-                        <div class="servicebox" onclick="navigateTo('http://google.com')">
-                            <div class="serviceimg"> <img class="img-responsive" src="/frontend/web/images/spring1.png">
+                        <div class="servicebox">
+                            <div class="serviceimg"> <img class="img-responsive" src="/frontend/web/<?php echo $event['display_image']?>">
                                 <!-- <div class="serviceimg-overlay"> <div class="btn btn-primary">VIEW</div> </div> -->
                             </div>
                             <div class="servicedes">
-                                <h4>News Heading 1</h4>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                <h4><?php echo $event['title'] ?></h4>
+                                <p><?php echo $event['content'] ?></p>
                                 <a href="#">
                                     <p class="readmore">Read More</p>
                                 </a>
@@ -158,38 +160,39 @@ $this->title = 'Homepage';
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-4">
-                    <a href="">
-                        <div class="servicebox" onclick="navigateTo('http://google.com')">
-                            <div class="serviceimg"> <img class="img-responsive" src="/frontend/web/images/spring2.png">
-                                <!-- <div class="serviceimg-overlay"> <div class="btn btn-primary">VIEW</div> </div> -->
-                            </div>
-                            <div class="servicedes">
-                                <h4>News Heading 2</h4>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <a href="#">
-                                    <p class="readmore">Read More</p>
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <a href="">
-                        <div class="servicebox" onclick="navigateTo('http://google.com')">
-                            <div class="serviceimg"> <img class="img-responsive" src="/frontend/web/images/spring3.png">
-                                <!-- <div class="serviceimg-overlay"> <div class="btn btn-primary">VIEW</div> </div> -->
-                            </div>
-                            <div class="servicedes">
-                                <h4>News Heading 3</h4>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <a href="#">
-                                    <p class="readmore">Read More</p>
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php } ?>
+<!--                <div class="col-sm-4">-->
+<!--                    <a href="">-->
+<!--                        <div class="servicebox" onclick="navigateTo('http://google.com')">-->
+<!--                            <div class="serviceimg"> <img class="img-responsive" src="/frontend/web/images/spring2.png">-->
+<!--                                <!-- <div class="serviceimg-overlay"> <div class="btn btn-primary">VIEW</div> </div> -->
+<!--                            </div>-->
+<!--                            <div class="servicedes">-->
+<!--                                <h4>News Heading 2</h4>-->
+<!--                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>-->
+<!--                                <a href="#">-->
+<!--                                    <p class="readmore">Read More</p>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="col-sm-4">-->
+<!--                    <a href="">-->
+<!--                        <div class="servicebox" onclick="navigateTo('http://google.com')">-->
+<!--                            <div class="serviceimg"> <img class="img-responsive" src="/frontend/web/images/spring3.png">-->
+<!--                                <!-- <div class="serviceimg-overlay"> <div class="btn btn-primary">VIEW</div> </div> -->
+<!--                            </div>-->
+<!--                            <div class="servicedes">-->
+<!--                                <h4>News Heading 3</h4>-->
+<!--                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>-->
+<!--                                <a href="#">-->
+<!--                                    <p class="readmore">Read More</p>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
             </div>
         </div>
     </div>

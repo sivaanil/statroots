@@ -189,12 +189,8 @@ ThemeAsset::register($this);
         </div>
     </div>
 </div>
-<div class="clear-fix"></div>
-        <div class="col-md-12" style="background-color: white">
-            <?= Alert::widget() ?>
-            <?= $content ?>
-        </div>
-<div class="clear-fix"></div>
+<?= Alert::widget() ?>
+<?= $content ?>
 <footer>
     <div class="sub-footer sectionpadding">
         <div class="container">

@@ -371,7 +371,7 @@ p {
 
 /*---- parallax section start ----*/
 .parallax-img {
-  background: rgba(0, 0, 0, 0) url("../img/parallax.png") no-repeat fixed 0 0 / cover ;
+  background: rgba(0, 0, 0, 0) url("/frontend/web/images/parallax.png") no-repeat fixed 0 0 / cover ;
   padding: 20px 0;
 }
 .section3 {
@@ -383,7 +383,7 @@ p {
 .eventbg1,
 .eventbg2,
 .eventbg3 {
-    background: #007c85;
+
 }
 .evnt-txt1 {
     color: #ffffff;
