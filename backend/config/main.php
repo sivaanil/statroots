@@ -50,6 +50,9 @@ return [
         ],
         'event' => [
             'class' => 'yeesoft\event\EventModule',
+        ],
+        'training' => [
+            'class' => 'yeesoft\training\TrainingModule',
         ]
     ],
     'components' => [
