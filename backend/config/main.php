@@ -51,8 +51,8 @@ return [
         'event' => [
             'class' => 'yeesoft\event\EventModule',
         ],
-        'training' => [
-            'class' => 'yeesoft\training\TrainingModule',
+        'testimonial' => [
+            'class' => 'yeesoft\testimonial\TestimonialModule',
         ]
     ],
     'components' => [

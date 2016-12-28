@@ -1,9 +1,16 @@
 <?php
 
-namespace yeesoft\post\controllers;
+namespace yeesoft\testimonial\controllers;
 
+use Yii;
 use yeesoft\controllers\admin\BaseController;
 use yeesoft\models\User;
+use app\models\Testimonials;
+use app\models\TestimonialsSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -16,33 +23,113 @@ class DefaultController extends BaseController
 
     public function init()
     {
-        $this->modelClass = $this->module->postModelClass;
-        $this->modelSearchClass = $this->module->postModelSearchClass;
-
-        $this->indexView = $this->module->indexView;
-        $this->viewView = $this->module->viewView;
-        $this->createView = $this->module->createView;
-        $this->updateView = $this->module->updateView;
-
         parent::init();
     }
 
-    protected function getRedirectPage($action, $model = null)
+    public function behaviors()
     {
-        if (!User::hasPermission('editPosts') && $action == 'create') {
-            return ['view', 'id' => $model->id];
-        }
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
 
-        switch ($action) {
-            case 'update':
-                return ['update', 'id' => $model->id];
-                break;
-            case 'create':
-                return ['update', 'id' => $model->id];
-                break;
-            default:
-                return parent::getRedirectPage($action, $model);
+    /**
+     * Lists all Testimonials models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $searchModel = new TestimonialsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Displays a single Testimonials model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Creates a new Testimonials model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Testimonials();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
     }
+
+    /**
+     * Updates an existing Testimonials model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Deletes an existing Testimonials model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the Testimonials model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Testimonials the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Testimonials::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
 
 }
