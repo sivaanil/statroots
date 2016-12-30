@@ -152,8 +152,8 @@ $this->title = 'Homepage';
                             </div>
                             <div class="servicedes">
                                 <h4><?php echo $event['title'] ?></h4>
-                                <p><?php echo $event['content'] ?></p>
-                                <a href="#">
+                                <p><?php echo $event['description'] ?></p>
+                                <a href="/event/view/<?php echo $event['id']?>">
                                     <p class="readmore">Read More</p>
                                 </a>
                             </div>

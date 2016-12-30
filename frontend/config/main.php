@@ -46,6 +46,7 @@ return [
                 '/' => 'site/index',
                 '<action:[\w \-]+>' => 'site/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
             ],
             'nonMultilingualUrls' => [
                 'auth/default/oauth',

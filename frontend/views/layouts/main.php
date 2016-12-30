@@ -147,44 +147,21 @@ ThemeAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.png"></a>
+                <a class="navbar-brand" href="<?php echo Yii::getAlias("@web")?>"><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse pull-right" id="main-nav-toggle">
-              <?php  $menuItems = Menu::getMenuItems('main-menu');
-                if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => Yii::t('yee/auth', 'Signup'), 'url' => \yii\helpers\Url::to(['/auth/default/signup'])];
-                $menuItems[] = ['label' => Yii::t('yee/auth', 'Login'), 'url' => ['/auth/default/login']];
-                } else {
-                $menuItems[] = [
-                'label' => Yii::$app->user->identity->username,
-                'url' => ['/auth/default/profile'],
-                ];
-
-                $menuItems[] = [
-                'label' => Yii::t('yee/auth', 'Logout'),
-                'url' => ['/auth/default/logout', 'language' => false],
-                'linkOptions' => ['data-method' => 'post']
-                ];
-                }
-                echo Nav::widget([
-                'encodeLabels' => false,
-                'options' => ['class' => 'nav navbar-nav list-unstyle'],
-                'items' => $menuItems,
-                ]);
-              ?>
-<!--                <ul class="nav navbar-nav list-unstyle">-->
-<!--                    <li class="active"><a href="#">Training</a>-->
-<!--                        <ul class="list-unstyle submenu">-->
-<!--                            <li><a href="#">Training</a></li>-->
-<!--                            <li><a href="#">Data Analytics Training</a></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
-<!--                    <li><a href="#">Placements</a></li>-->
-<!--                    <li><a href="#">Consultancy</a></li>-->
-<!--                    <li class=""><a href="#">Resources</a></li>-->
-<!--                    <li><a href="#">Blog & Community</a></li>-->
-<!--                </ul>-->
-
+                <ul class="nav navbar-nav list-unstyle">
+                    <li class="active"><a href="#">Training</a>
+                        <ul class="list-unstyle submenu">
+                            <li><a href="#">Training</a></li>
+                            <li><a href="#">Data Analytics Training</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Placements</a></li>
+                    <li><a href="#">Consultancy</a></li>
+                    <li class=""><a href="#">Resources</a></li>
+                    <li><a href="#">Blog & Community</a></li>
+                </ul>
             </div>
         </div>
     </div>
