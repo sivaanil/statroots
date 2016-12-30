@@ -33,8 +33,8 @@ class Events extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'event_date', 'created_date'], 'required'],
-            [['content', 'nominate', 'is_upcoming'], 'string'],
+            [['title','description', 'content', 'event_date', 'created_date'], 'required'],
+            [['description', 'content', 'status'], 'string'],
             [['event_date', 'created_date'], 'safe'],
             [['title'], 'string', 'max' => 255],
             [['display_image'], 'string', 'max' => 255]
@@ -49,12 +49,11 @@ class Events extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'description' => 'Description',
             'content' => 'Content',
-            'nominate' => 'Nominate',
             'event_date' => 'Event Date',
             'display_image' => 'Display Image',
-            'created_date' => 'Created Date',
-            'is_upcoming' => 'Is Upcoming'
+            'created_date' => 'Created Date'
         ];
     }
 

@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = 'Events';
                             return Html::a($model->title, ['/event/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                     ],
-                    'content',
+                    'description',
                     'created_date',
                     'event_date',
                     [

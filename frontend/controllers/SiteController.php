@@ -100,7 +100,7 @@ class SiteController extends \yeesoft\controllers\BaseController
 //
 //            return $postAction->run();
 //        }
-        $events = Events::find()->asArray()->all();
+        $events = Events::find()->where("`status` = '1'")->asArray()->all();
         return $this->render('index', [
                 'events' => $events
             ]);

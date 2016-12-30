@@ -37,14 +37,11 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+                        <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+
                         <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
                         <?= $form->field($model,'event_date')->widget(DatePicker::className(),['clientOptions' => ['dateFormat' => 'Y/m/d']]) ?>
-
-                        <?= $form->field($model, 'nominate')->checkbox(); ?>
-
-                        <?= $form->field($model, 'is_upcoming')->checkbox(); ?>
-
 
                     </div>
                 </div>

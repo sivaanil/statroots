@@ -53,6 +53,9 @@ return [
         ],
         'testimonial' => [
             'class' => 'yeesoft\testimonial\TestimonialModule',
+        ],
+        'training' => [
+            'class' => 'yeesoft\training\TrainingModule',
         ]
     ],
     'components' => [

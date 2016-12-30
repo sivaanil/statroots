@@ -1,16 +1,16 @@
 <?php
 
-namespace yeesoft\event\models;
+namespace yeesoft\training\models;
 
+use yeesoft\training\models\Training;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yeesoft\event\models\Events;
 
 /**
  * EventsSearch represents the model behind the search form about `app\models\Events`.
  */
-class EventsSearch extends Events
+class TrainingSearch extends Training
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class EventsSearch extends Events
     {
         return [
             [['id'], 'integer'],
-            [['title', 'content', 'description', 'event_date', 'created_date', 'display_image'], 'safe'],
+            [['title', 'content', 'nominate', 'is_upcoming', 'training_date', 'created_at', 'status'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class EventsSearch extends Events
      */
     public function search($params)
     {
-        $query = Events::find();
+        $query = Training::find();
 
         // add conditions that should always apply here
 
@@ -60,14 +60,15 @@ class EventsSearch extends Events
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'event_date' => $this->event_date,
-            'created_date' => $this->created_date,
+            'training_date' => $this->training_date,
+            'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'content', $this->content]);
-
+            ->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'nominate', $this->nominate])
+            ->andFilterWhere(['like', 'is_upcoming', $this->is_upcoming])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

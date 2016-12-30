@@ -27,17 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
+            'description:ntext',
             'content:ntext',
             'event_date',
             'created_date',
-            [
-                'attribute' => 'nominate',
-                'value'=> $model->nominate == 1 ? 'Yes' : 'No'
-            ],
-            [
-                'attribute' => 'is_upcoming',
-                'value'=> $model->is_upcoming == 1 ? 'Yes' : 'No'
-            ],
             [
                 'attribute'=>'display_image',
                 'value'=>$model->display_image,
