@@ -48,4 +48,41 @@ CREATE TABLE `training` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
 
-======================================================================================================
+
+// Create Registrations Table
+
+CREATE TABLE `registration` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(255) NOT NULL,
+ `mobile` varchar(20) NOT NULL,
+ `email` varchar(255) NOT NULL,
+ `address` text NOT NULL,
+ `location_id` int(11) NOT NULL,
+ `college_id` int(11) NOT NULL,
+ `course_id` int(11) NOT NULL,
+ `year_of_study` enum('1','2','3','4') NOT NULL,
+ `branch` varchar(255) NOT NULL,
+ `preferred_location_id` int(11) NOT NULL,
+ `laptop_status` enum('1','2','3','4') NOT NULL COMMENT '1-Yes,2-No,3-Can Bring For Training,4-Cant bring laptop for training',
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+// Create Location Table
+
+CREATE TABLE `location` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+// Create College Table
+
+CREATE TABLE `star_prod`.`college` ( `id` INT NOT NULL AUTO_INCREMENT , `college_name` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM
+
+// Create Course Table
+
+CREATE TABLE `course` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `course_name` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1

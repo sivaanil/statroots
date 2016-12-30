@@ -147,7 +147,7 @@ ThemeAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo Yii::getAlias("@web")?>"><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.png"></a>
+                <a class="navbar-brand" href="/"><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.png"></a>
             </div>
             <div class="collapse navbar-collapse pull-right" id="main-nav-toggle">
                 <ul class="nav navbar-nav list-unstyle">
@@ -173,9 +173,9 @@ ThemeAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <a href=""><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.png"></a>
+                    <a href="#"><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.png"></a>
                     <ul class="list-unstyle scstyle">
-                        <li>Followus on:</li>
+                        <li>Follow us on:</li>
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a</li>
                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a</li>
                         <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>

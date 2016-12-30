@@ -87,9 +87,17 @@ class DefaultController extends BaseController
     {
         if(\Yii::$app->user->isSuperadmin) {
             $model = $this->findModel($id);
-
+            $imagePath = $model->display_image;
             if (\Yii::$app->request->post()) {
                 $model->attributes = \Yii::$app->request->post('Events');
+                if($_POST['Events']['display_image'] == '' && $imagePath !=''){
+                    $model->display_image = $imagePath;
+                }if($_POST['Events']['display_image'] == '' && $imagePath ==''){
+                    $model->display_image = "/frontend/web/images/default.jpg";
+                }
+//echo "<pre>";
+//                print_r($model->attributes);
+//                exit;
                 $model->event_date = \Yii::$app->formatter->asDatetime($model->event_date, 'yyyy-MM-dd 00:00:00');
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
