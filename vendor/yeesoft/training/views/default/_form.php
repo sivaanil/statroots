@@ -39,7 +39,11 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-                        <?= $form->field($model,'training_date')->widget(DatePicker::className(),['clientOptions' => ['dateFormat' => 'Y/m/d']]) ?>
+                        <?= $form->field($model,'training_date')->textInput() ?>
+
+                        <?= $form->field($model,'amount')->textInput() ?>
+
+                        <?= $form->field($model,'batch')->textInput() ?>
 
                         <?= $form->field($model, 'nominate')->checkbox() ?>
 

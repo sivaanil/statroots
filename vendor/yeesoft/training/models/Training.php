@@ -32,10 +32,11 @@ class Training extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title','content', 'nominate', 'is_upcoming','training_date'], 'required'],
+            [['title','content', 'nominate', 'is_upcoming','training_date','amount','batch'], 'required'],
             [['content', 'nominate', 'is_upcoming', 'status'], 'string'],
-            [['training_date','created_at'], 'safe'],
-            [['title'], 'string', 'max' => 255],
+            [['amount'],'number'],
+            [['created_at'], 'safe'],
+            [['title','training_date','batch'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,6 +52,8 @@ class Training extends \yii\db\ActiveRecord
             'nominate' => Yii::t('app', 'Nominate'),
             'is_upcoming' => Yii::t('app', 'Is Upcoming'),
             'training_date' => Yii::t('app', 'Training Date'),
+            'amount' => Yii::t('app', 'Amount'),
+            'batch' => Yii::t('app', 'Batch'),
             'created_at' => Yii::t('app', 'Created At'),
             'status' => Yii::t('app', 'Status'),
         ];

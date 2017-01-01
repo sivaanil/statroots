@@ -70,7 +70,7 @@ class DefaultController extends BaseController
 
         if(\Yii::$app->request->isPost && \Yii::$app->user->isSuperadmin){
             $model->attributes = $_POST['Training'];
-            $model->training_date =\Yii::$app->formatter->asDatetime($model->training_date, 'yyyy-MM-dd 00:00:00');
+//            $model->training_date =\Yii::$app->formatter->asDatetime($model->training_date, 'yyyy-MM-dd 00:00:00');
             $model->created_at =\Yii::$app->formatter->asDatetime('now', 'yyyy-MM-dd H:i:s');
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -95,7 +95,7 @@ class DefaultController extends BaseController
 
             if (\Yii::$app->request->post()) {
                 $model->attributes = \Yii::$app->request->post('Training');
-                $model->training_date = \Yii::$app->formatter->asDatetime($model->training_date, 'yyyy-MM-dd 00:00:00');
+//                $model->training_date = \Yii::$app->formatter->asDatetime($model->training_date, 'yyyy-MM-dd 00:00:00');
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {

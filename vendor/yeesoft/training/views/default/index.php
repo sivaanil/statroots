@@ -76,6 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //                        'attribute' => 'is_upcoming',
 //                        'value'=> $model->is_upcoming == 1 ? 'Yes' : 'No'
 //                    ],
+                'training_date',
                     [
                         'label' => 'Current Status',
                         'attribute' => 'status',

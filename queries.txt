@@ -35,7 +35,6 @@ ALTER TABLE  `events` ADD  `description` TEXT NOT NULL AFTER  `title` ;
 
 // Create Training Table
 
-
 CREATE TABLE `training` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `title` varchar(255) NOT NULL,
@@ -78,7 +77,7 @@ CREATE TABLE `location` (
 
 // Create College Table
 
-CREATE TABLE `star_prod`.`college` ( `id` INT NOT NULL AUTO_INCREMENT , `college_name` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM
+CREATE TABLE `college` ( `id` INT NOT NULL AUTO_INCREMENT , `college_name` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM
 
 // Create Course Table
 

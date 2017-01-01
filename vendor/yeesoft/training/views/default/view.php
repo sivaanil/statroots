@@ -49,6 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value'=> $model->is_upcoming == 1 ? 'Yes' : 'No'
                     ],
                     'training_date',
+                    'amount',
+                    'batch',
                     'created_at',
                 ],
             ]) ?>
