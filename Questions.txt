@@ -14,8 +14,18 @@ Testimonial
 
 
 
+
+
 Training Page Front End Pending - mobeena
-2 Forms as Link
-EOI / Registration Form - Mail sent by Srinivas sir
-Nomination Form - For Specific Training
-Event Page
+Slider Images - Mobeena/Jyothi has to send
+Services Text Pending - Srinivas sir has to send
+Testimonials - Srinivas sir has to send
+Icons Text - Srinivas sir has to send
+Nomination Form - For Specific Training - done
+
+
+In Training Module
+
+Add column training dates
+Add Column Amount
+Add Column Batch

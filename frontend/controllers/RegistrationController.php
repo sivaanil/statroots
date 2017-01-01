@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\Registration;
-use app\models\RegistrationSsearch;
+use app\models\RegistrationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,9 +35,9 @@ class RegistrationController extends Controller
      * Lists all Registration models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionAllregistrations()
     {
-        $searchModel = new RegistrationSsearch();
+        $searchModel = new RegistrationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -67,7 +67,7 @@ class RegistrationController extends Controller
     {
         $model = new Registration();
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
-            return $this->render('thanks');
+            return $this->redirect('thanks');
         } else {
             return $this->render('create', [
                 'model' => $model
@@ -105,6 +105,10 @@ class RegistrationController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionThanks(){
+        return $this->render('thanks');
     }
 
     /**

@@ -146,4 +146,8 @@ public function actionNominate()
     {
         return $this->render('nominate');
     }
+public function actionTraining()
+    {
+        return $this->render('training');
+    }
 }

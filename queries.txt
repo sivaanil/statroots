@@ -72,6 +72,7 @@ CREATE TABLE `registration` (
 CREATE TABLE `location` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `name` varchar(255) NOT NULL,
+ `location_code` varchar(20) NOT NULL,
  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1
 
@@ -84,5 +85,59 @@ CREATE TABLE `star_prod`.`college` ( `id` INT NOT NULL AUTO_INCREMENT , `college
 CREATE TABLE `course` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `course_name` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+// create table nominations
+
+CREATE TABLE `nominations` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(255) NOT NULL,
+ `nomination_program_id` int(11) NOT NULL,
+ `nomination_type_id` int(11) NOT NULL,
+ `location_id` int(11) NOT NULL,
+ `computer_knowledge` enum('0','1') NOT NULL,
+ `reference_id` int(11) DEFAULT NULL,
+ `referred_by` varchar(255) DEFAULT NULL,
+ `gender` enum('0','1') NOT NULL,
+ `person_type` enum('0','1') NOT NULL,
+ `age` int(11) NOT NULL,
+ `nationality` varchar(60) NOT NULL,
+ `address` text NOT NULL,
+ `mobile` varchar(25) NOT NULL,
+ `email` varchar(60) NOT NULL,
+ `can_carry_laptop` enum('0','1') NOT NULL,
+ `having_exposure` enum('0','1') NOT NULL,
+ `advertisement_id` int(10) NOT NULL,
+ `key_expectations` text NOT NULL,
+ `student_details_id` int(11) DEFAULT NULL,
+ `employee_details_id` int(11) DEFAULT NULL,
+ `bank_details_id` int(11) NOT NULL,
+ `registration_id` int(11) NOT NULL,
+ `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+// create table employee_details
+
+CREATE TABLE `employee_details` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `current_employer` varchar(255) NOT NULL,
+ `industry_sector` varchar(255) NOT NULL,
+ `functional_area` varchar(255) NOT NULL,
+ `designation` varchar(255) NOT NULL,
+ `experience` int(11) NOT NULL,
+ `academic_qualifications` varchar(255) NOT NULL,
+ `email_id` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+// create table student_details
+CREATE TABLE `student_details` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `college_id` int(11) NOT NULL,
+ `course_id` int(11) NOT NULL,
+ `year_of_passing` varchar(10) NOT NULL,
+ `branch` varchar(255) NOT NULL,
  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1
