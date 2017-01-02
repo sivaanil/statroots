@@ -297,7 +297,10 @@ class DefaultController extends BaseController
 
         if (Yii::$app->request->isAjax AND $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return $model->validate();
+            $validation =  $model->validate();
+                if($validation != false){
+                    return $validation;
+                }
         }
 
         if ($model->load(Yii::$app->request->post()) AND $model->validate()) {
@@ -309,15 +312,15 @@ class DefaultController extends BaseController
                 // Trigger event "after registration" and checks if it's valid
                 if ($user && $this->triggerModuleEvent(AuthEvent::AFTER_REGISTRATION, ['model' => $model, 'user' => $user])) {
 
-                    if (Yii::$app->yee->emailConfirmationRequired) {
-                        return $this->renderIsAjax('signup-confirmation', compact('user'));
-                    } else {
+//                    if (Yii::$app->yee->emailConfirmationRequired) {
+//                        return $this->renderIsAjax('signup-confirmation', compact('user'));
+//                    } else {
                         $user->assignRoles(Yii::$app->yee->defaultRoles);
 
                         Yii::$app->user->login($user);
 
                         return $this->redirect(Yii::$app->user->returnUrl);
-                    }
+//                    }
                 }
             }
         }

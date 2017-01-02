@@ -279,9 +279,8 @@ type   : 'POST',
 data   : form.serialize(),
 success: function (response)
 {
-if(response == false){
-  $("#signUpErrors").text(errors1).show();
-}
+console.log(response);
+
 $.each(response, function(obj)
                 {
                     errors1 =response[obj][0];
