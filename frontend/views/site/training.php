@@ -126,6 +126,7 @@
                 <div class="btnsregister">
                     <a href="/registration/create" class="btn btn-primary formbtnstyle">Register/ Express your interest</a>
                     <a href="/nomination/create" class="btn btn-primary formbtnstyle">Nomination for training program</a>
+                    <a href="/frontend/web/docs/about_statroots.pdf" class="btn btn-primary formbtnstyle" download>Download our Brochure</a>
                 </div>
             </div>
         </div>

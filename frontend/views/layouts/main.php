@@ -145,34 +145,47 @@ ThemeAsset::register($this);
                 <h4 class="modal-title" id="myModalLabel">Login</h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                        </div>
+                <?php
+                $model = new yeesoft\auth\models\forms\LoginForm();
+                $form = ActiveForm::begin([
+                    'id' => 'login-form',
+                    'options' => ['autocomplete' => 'off'],
+                    'validateOnBlur' => false,
+                    'fieldConfig' => [
+                        'template' => "{input}\n{error}",
+                    ],
+                ])
+                ?>
+                <div id="errors" style="color: red;display: none"></div>
+                <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username'), 'autocomplete' => 'off']) ?>
+
+                <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password'), 'autocomplete' => 'off']) ?>
+
+                <?= $form->field($model, 'rememberMe')->checkbox(['value' => true]) ?>
+
+                <input type="submit" class = "btn btn-lg btn-primary btn-block" />
+
+                <div class="row registration-block">
+                    <div class="col-sm-12">
+                        <?=
+                        \yeesoft\auth\widgets\AuthChoice::widget([
+                            'baseAuthUrl' => ['/auth/default/oauth', 'language' => false],
+                            'popupMode' => false,
+                        ])
+                        ?>
                     </div>
-                    <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                        </div>
+                </div>
+
+                <div class="row registration-block">
+                    <div class="col-sm-6">
+                        <?= Html::a(Yii::t('yee/auth', "Registration"), ['default/signup']) ?>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-7">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
+                    <div class="col-sm-6 text-right">
+                        <?= Html::a(Yii::t('yee/auth', "Forgot password?"), ['default/reset-password']) ?>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary">submit</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
+
+                <?php ActiveForm::end() ?>
             </div>
 
         </div>
@@ -196,6 +209,8 @@ ThemeAsset::register($this);
                     'options' => ['autocomplete' => 'off'],
                 ]); ?>
 
+                <div id="signUpErrors" style="color: red;display: none"></div>
+
                 <?= $form->field($model, 'username')->textInput(['maxlength' => 50]) ?>
 
                 <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
@@ -209,7 +224,7 @@ ThemeAsset::register($this);
                     'captchaAction' => [\yii\helpers\Url::to(['/auth/captcha'])]
                 ]) ?>
 
-                <?= Html::submitButton(Yii::t('yee/auth', 'Signup'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
+                <input type="submit" class = "btn btn-lg btn-primary btn-block" />
 
                 <div class="row registration-block">
                     <div class="col-sm-6">
@@ -226,6 +241,67 @@ ThemeAsset::register($this);
     </div>
 </div>
 <?php $this->endBody() ?>
+<?php
+$js = <<<JS
+$("body").on('submit', '#login-form', function(e){
+var form = $(this);
+$.ajax({
+url    : '/auth/login',
+type   : 'POST',
+data   : form.serialize(),
+success: function (response)
+{
+
+$.each(response, function(obj)
+                {
+                    errors =response[obj][0];
+                    console.log(response[obj]);
+                });
+                
+                $("#errors").text(errors).show();
+},
+error  : function (e)
+{
+
+}
+});
+return false;
+})
+JS;
+
+$js1 = <<<JS
+$("body").on('submit', '#signup', function(e){
+var form = $(this);
+var errors1;
+$.ajax({
+url    : '/auth/signup',
+type   : 'POST',
+data   : form.serialize(),
+success: function (response)
+{
+if(response == false){
+  $("#signUpErrors").text(errors1).show();
+}
+$.each(response, function(obj)
+                {
+                    errors1 =response[obj][0];
+                    console.log(response[obj]);
+                });
+                
+                $("#signUpErrors").text(errors1).show();
+},
+error  : function (e)
+{
+    console.log("-");
+console.log(e);
+}
+});
+return false;
+})
+JS;
+$this->registerJs($js, \yii\web\View::POS_READY);
+$this->registerJs($js1, \yii\web\View::POS_READY);
+?>
 </body>
 </html>
 <?php $this->endPage() ?>
