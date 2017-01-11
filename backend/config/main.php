@@ -48,7 +48,13 @@ return [
         'block' => [
             'class' => 'yeesoft\block\BlockModule',
         ],
-        'training' => [
+        'event' => [
+           'class' => 'yeesoft\event\EventModule',
+       ],
+        'testimonial' => [
+           'class' => 'yeesoft\testimonial\TestimonialModule',
+        ],
+       'training' => [
             'class' => 'yeesoft\training\TrainingModule',
         ]
     ],

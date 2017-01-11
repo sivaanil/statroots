@@ -1,0 +1,1 @@
+[09-Jan-2017 21:46:50 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 43933953 bytes) in /home/starroots/public_html/vendor/imagine/imagine/lib/Imagine/Gd/Image.php on line 617

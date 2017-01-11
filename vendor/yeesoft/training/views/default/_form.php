@@ -37,11 +37,17 @@ use yeesoft\post\models\Tag;
 
                         <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-                        <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-                        
-                        <?= $form->field($model, 'tagValues')->widget(MagicSuggest::className(), ['items' => Tag::getTags()]); ?>
+                        <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-                        <?= $form->field($model, 'content')->widget(TinyMce::className()); ?>
+                        <?= $form->field($model,'training_date')->textInput() ?>
+
+                        <?= $form->field($model,'amount')->textInput() ?>
+
+                        <?= $form->field($model,'batch')->textInput() ?>
+
+                        <?= $form->field($model, 'nominate')->checkbox() ?>
+
+                        <?= $form->field($model, 'is_upcoming')->checkbox() ?>
 
                     </div>
                 </div>
@@ -52,31 +58,6 @@ use yeesoft\post\models\Tag;
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="record-info">
-                            <?php if (!$model->isNewRecord): ?>
-
-                                <div class="form-group clearfix">
-                                    <label class="control-label" style="float: left; padding-right: 5px;">
-                                        <?= $model->attributeLabels()['created_at'] ?> :
-                                    </label>
-                                    <span><?= $model->createdDatetime ?></span>
-                                </div>
-
-                                <div class="form-group clearfix">
-                                    <label class="control-label" style="float: left; padding-right: 5px;">
-                                        <?= $model->attributeLabels()['updated_at'] ?> :
-                                    </label>
-                                    <span><?= $model->updatedDatetime ?></span>
-                                </div>
-
-                                <div class="form-group clearfix">
-                                    <label class="control-label" style="float: left; padding-right: 5px;">
-                                        <?= $model->attributeLabels()['updated_by'] ?> :
-                                    </label>
-                                    <span><?= $model->updatedBy->username ?></span>
-                                </div>
-
-                            <?php endif; ?>
-
                             <div class="form-group">
                                 <?php if ($model->isNewRecord): ?>
                                     <?= Html::submitButton(Yii::t('yee', 'Create'), ['class' => 'btn btn-primary']) ?>
@@ -95,53 +76,6 @@ use yeesoft\post\models\Tag;
                         </div>
                     </div>
                 </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-
-                        <div class="record-info">
-                            <?= $form->field($model, 'category_id')->dropDownList(Category::getCategories(), ['prompt' => '', 'encodeSpaces' => true]) ?>
-
-                            <?= $form->field($model, 'published_at')
-                                ->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd', 'options' => ['class' => 'form-control']]); ?>
-
-                            <?= $form->field($model, 'status')->dropDownList(Post::getStatusList()) ?>
-
-                            <?php if (!$model->isNewRecord): ?>
-                                <?= $form->field($model, 'created_by')->dropDownList(User::getUsersList()) ?>
-                            <?php endif; ?>
-
-                            <?= $form->field($model, 'comment_status')->dropDownList(Post::getCommentStatusList()) ?>
-
-                            <?= $form->field($model, 'view')->dropDownList($this->context->module->viewList) ?>
-
-                            <?= $form->field($model, 'layout')->dropDownList($this->context->module->layoutList) ?>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="record-info">
-                            <?= $form->field($model, 'thumbnail')->widget(yeesoft\media\widgets\FileInput::className(), [
-                                'name' => 'image',
-                                'buttonTag' => 'button',
-                                'buttonName' => Yii::t('yee', 'Browse'),
-                                'buttonOptions' => ['class' => 'btn btn-default btn-file-input'],
-                                'options' => ['class' => 'form-control'],
-                                'template' => '<div class="post-thumbnail thumbnail"></div><div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
-                                'thumb' => $this->context->module->thumbnailSize,
-                                'imageContainer' => '.post-thumbnail',
-                                'pasteData' => yeesoft\media\widgets\FileInput::DATA_URL,
-                                'callbackBeforeInsert' => 'function(e, data) {
-                                $(".post-thumbnail").show();
-                            }',
-                            ]) ?>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
