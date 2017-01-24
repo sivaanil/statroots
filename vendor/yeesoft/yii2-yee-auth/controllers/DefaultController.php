@@ -16,6 +16,7 @@ use yeesoft\auth\models\forms\SignupForm;
 use yeesoft\auth\models\forms\UpdatePasswordForm;
 use yeesoft\components\AuthEvent;
 use yeesoft\controllers\BaseController;
+use yeesoft\event\models\Events;
 use yeesoft\models\User;
 use Yii;
 use yii\base\DynamicModel;
@@ -546,7 +547,7 @@ class DefaultController extends BaseController
         if (Yii::$app->user->isGuest) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
-
+        $events = new Events();
         $model = User::findIdentity(Yii::$app->user->id);
 
         if ($model->load(Yii::$app->request->post()) AND $model->save()) {

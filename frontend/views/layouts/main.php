@@ -17,7 +17,7 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
 
-Yii::$app->assetManager->forceCopy = true;
+//Yii::$app->assetManager->forceCopy = true;
 AppAsset::register($this);
 ThemeAsset::register($this);
 ?>
@@ -38,13 +38,24 @@ ThemeAsset::register($this);
     <div class="top-header">
         <div class="container">
             <ul class="list-unstyle pull-right">
-                <li class="btn btninputs" data-toggle="modal" data-target="#myModallogin">
-                    <a class="btn loginbtn" href="#"><i class="fa fa-sign-in" ></i>Login</a>
-                </li>
-                <li class="btn btninputs" data-toggle="modal" data-target="#myModalsignup">
-                    <a href="#">Sign up</a>
+                <?php if (Yii::$app->user->isGuest) { ?>
+                    <li class="btn btninputs">
+                        <a class="btn loginbtn" href="/auth/default/login" >Login</a>
+                    </li>
+                    <li class="btn btninputs">
+                        <a href="/auth/default/signup">Sign up</a>
+                    </li>
 
-                </li>
+                <?php }else{ ?>
+
+                    <li class="btn btninputs">
+                        <a class="btn loginbtn" href="/auth/default/profile"><i class="fa fa-sign-in" ></i>Profile</a>
+                    </li>
+                    <li class="btn btninputs">
+                        <a href="/auth/default/logout">Logout</a>
+                    </li>
+
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -68,10 +79,10 @@ ThemeAsset::register($this);
                             <li><a href="#">Data Analytics Training</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Placements</a></li>
-                    <li><a href="#">Consultancy</a></li>
-                    <li class=""><a href="#">Resources</a></li>
-                    <li><a href="#">Blog & Community</a></li>
+                    <li><a href="/site/placements">Placements</a></li>
+                    <li><a href="/site/consultancy">Consultancy</a></li>
+                    <li><a href="/site/resources">Resources</a></li>
+                    <li><a href="/site/blog">Blog & Community</a></li>
                 </ul>
             </div>
         </div>
@@ -109,10 +120,11 @@ ThemeAsset::register($this);
                     </ul>
                 </div>
                 <div class="col-md-3 col-xs-12 pull-right">
-                    <h4 class="uline">CONTACT INFO</h4>
+                    <h4 class="uline">CONTACT</h4>
                     <div class="list-unstyle addr">
-                        <p class="map-maker">Statroots</br>XXX Campus Drive</br>Hyderabad, 500081</p>
-                        <p class="phone">+91-7337027700</p>
+                        <p class="map-maker">Statroots</br>Plot 274, Secretariat Colony, Manikonda</br>Hyderabad, 500089</p>
+                        <p class="phone">Phone: +91-7337027700</p>
+                        <p class="phone">Email: connect@statroots.com</p>
                     </div>
                 </div>
             </div>
@@ -128,179 +140,13 @@ ThemeAsset::register($this);
                     <ul class="list-unstyle terms pull-right">
                         <li><a href="#">Terms & Condition</a></li>
                         <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Title</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-<div class="modal fade" id="myModallogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Login</h4>
-            </div>
-            <div class="modal-body">
-                <?php
-                $model = new yeesoft\auth\models\forms\LoginForm();
-                $form = ActiveForm::begin([
-                    'id' => 'login-form',
-                    'options' => ['autocomplete' => 'off'],
-                    'validateOnBlur' => false,
-                    'fieldConfig' => [
-                        'template' => "{input}\n{error}",
-                    ],
-                ])
-                ?>
-                <div id="errors" style="color: red;display: none"></div>
-                <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username'), 'autocomplete' => 'off']) ?>
-
-                <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password'), 'autocomplete' => 'off']) ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox(['value' => true]) ?>
-
-                <input type="submit" class = "btn btn-lg btn-primary btn-block" />
-
-                <div class="row registration-block">
-                    <div class="col-sm-12">
-                        <?=
-                        \yeesoft\auth\widgets\AuthChoice::widget([
-                            'baseAuthUrl' => ['/auth/default/oauth', 'language' => false],
-                            'popupMode' => false,
-                        ])
-                        ?>
-                    </div>
-                </div>
-
-                <div class="row registration-block">
-                    <div class="col-sm-6">
-                        <?= Html::a(Yii::t('yee/auth', "Registration"), ['default/signup']) ?>
-                    </div>
-                    <div class="col-sm-6 text-right">
-                        <?= Html::a(Yii::t('yee/auth', "Forgot password?"), ['default/reset-password']) ?>
-                    </div>
-                </div>
-
-                <?php ActiveForm::end() ?>
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="myModalsignup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Sign up / Register</h4>
-            </div>
-            <div class="modal-body">
-                <?php
-                $model = new \yeesoft\auth\models\forms\SignupForm();
-                $form = ActiveForm::begin([
-                    'id' => 'signup',
-                    'validateOnBlur' => false,
-                    'options' => ['autocomplete' => 'off'],
-                ]); ?>
-
-                <div id="signUpErrors" style="color: red;display: none"></div>
-
-                <?= $form->field($model, 'username')->textInput(['maxlength' => 50]) ?>
-
-                <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput(['maxlength' => 255]) ?>
-
-                <?= $form->field($model, 'repeat_password')->passwordInput(['maxlength' => 255]) ?>
-
-                <?= $form->field($model, 'captcha')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-sm-3">{image}</div><div class="col-sm-3">{input}</div></div>',
-                    'captchaAction' => [\yii\helpers\Url::to(['/auth/captcha'])]
-                ]) ?>
-
-                <input type="submit" class = "btn btn-lg btn-primary btn-block" />
-
-                <div class="row registration-block">
-                    <div class="col-sm-6">
-                        <?= Html::a(Yii::t('yee/auth', "Login"), ['default/login']) ?>
-                    </div>
-                    <div class="col-sm-6 text-right">
-                        <?= Html::a(Yii::t('yee/auth', "Forgot password?"), ['default/reset-password']) ?>
-                    </div>
-                </div>
-
-                <?php ActiveForm::end() ?>
-            </div>
-        </div>
-    </div>
-</div>
 <?php $this->endBody() ?>
-<?php
-$js = <<<JS
-$("body").on('submit', '#login-form', function(e){
-var form = $(this);
-$.ajax({
-url    : '/auth/login',
-type   : 'POST',
-data   : form.serialize(),
-success: function (response)
-{
-
-$.each(response, function(obj)
-                {
-                    errors =response[obj][0];
-                    console.log(response[obj]);
-                });
-                
-                $("#errors").text(errors).show();
-},
-error  : function (e)
-{
-
-}
-});
-return false;
-})
-JS;
-
-$js1 = <<<JS
-$("body").on('submit', '#signup', function(e){
-var form = $(this);
-var errors1;
-$.ajax({
-url    : '/auth/signup',
-type   : 'POST',
-data   : form.serialize(),
-success: function (response)
-{
-console.log(response);
-
-$.each(response, function(obj)
-                {
-                    errors1 =response[obj][0];
-                    console.log(response[obj]);
-                });
-                
-                $("#signUpErrors").text(errors1).show();
-},
-error  : function (e)
-{
-    console.log("-");
-console.log(e);
-}
-});
-return false;
-})
-JS;
-$this->registerJs($js, \yii\web\View::POS_READY);
-$this->registerJs($js1, \yii\web\View::POS_READY);
-?>
 </body>
 </html>
 <?php $this->endPage() ?>
