@@ -9,58 +9,61 @@ use yii\helpers\Html;
 
 $this->title = 'Homepage';
 ?>
-    <div class="home-slider">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="/frontend/web/images/slide1.jpeg" alt="...">
-                    <div class="carousel-caption hidden-xs">
-                        <h1>Analytics sector is the key emerging areas of the future</h1>
-                        <p>We at Statroots understands the industry needs and help you gearing up for the future</p>
-<!--
-                        <button class="">Apply Now</button>
--->
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/frontend/web/images/slide2.jpg" alt="...">
-                    <div class="carousel-caption hidden-xs">
-                        <h1>At Statroots, you don’t just receive training</h1>
-                        <p>Our integrated approach combines Training, Mentoring and Post-training Engagement through best-in- class online platform ever created</p>
-<!--
-                        <button class="">Apply Now</button>
--->
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/frontend/web/images/slide3.jpg" alt="...">
-                    <div class="carousel-caption hidden-xs">
-                        <h1>We understand your world</h1>
-                        <p>Our vision is to create a talent pool of Data Analytics professionals and enable them to navigate a successful career in tomorrow’s data-driven decision making world</p>
-<!--
-                        <button class="">Apply Now</button>
--->
-                    </div>
+<div class="home-slider">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="/frontend/web/images/banner1.jpg" alt="...">
+                <div class="carousel-caption hidden-xs">
+                    <h1>Analytics sector is the key emerging areas of the future</h1>
+                    <p>We at Statroots understands the industry needs and help you gearing up for the future.</p>
+                    <button class="">Apply Now</button>
                 </div>
             </div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="fa fa-angle-left" aria-hidden="true"></span>
-                <!-- <span class="sr-only">Previous</span> -->
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="fa fa-angle-right" aria-hidden="true"></span>
-                <!-- <span class="sr-only">Next</span> -->
-            </a>
+            <div class="item">
+                <img src="/frontend/web/images/banner2.jpg" alt="...">
+                <div class="carousel-caption hidden-xs">
+                    <h1>At Statroots. You don't just receive training</h1>
+                    <p>Our Integrated approach combines Training, Mentoring and Post-training Engagement through best-in-class online platform ever created.</p>
+                    <button class="">Apply Now</button>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/frontend/web/images/banner3.jpg" alt="...">
+                <div class="carousel-caption hidden-xs">
+                    <h1>We understand your World</h1>
+                    <p>Our vision is to create a talent pool of Data Analytics professionals and enable them to navigate a successfull career in tomorrow's data-driven decisions making world.</p>
+                    <button class="">Apply Now</button>
+                </div>
+            </div>
+<!--            <div class="item">-->
+<!--                <img src="/frontend/web/images/banner4.jpg" alt="...">-->
+<!--                <div class="carousel-caption hidden-xs">-->
+<!--                    <h1>Enter your main text here</h1>-->
+<!--                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever specimen book.</p>-->
+<!--                    <button class="">Apply Now</button>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="fa fa-angle-left" aria-hidden="true"></span>
+            <!-- <span class="sr-only">Previous</span> -->
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="fa fa-angle-right" aria-hidden="true"></span>
+            <!-- <span class="sr-only">Next</span> -->
+        </a>
     </div>
+</div>
     <!-- Slider end-->
     <div class="aboutsection sectionpadding">
         <div class="container">

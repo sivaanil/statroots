@@ -17,7 +17,7 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
 
-Yii::$app->assetManager->forceCopy = true;
+//Yii::$app->assetManager->forceCopy = true;
 AppAsset::register($this);
 ThemeAsset::register($this);
 ?>
@@ -39,11 +39,14 @@ ThemeAsset::register($this);
         <div class="container">
             <ul class="list-unstyle pull-right">
                 <li class="btn btninputs" data-toggle="modal" data-target="#myModallogin">
-                    <a class="btn loginbtn" href="#"><i class="fa fa-sign-in" ></i>Login</a>
-                </li>
-                <li class="btn btninputs" data-toggle="modal" data-target="#myModalsignup">
-                    <a href="#">Sign up</a>
-
+                    <?php
+                    if (Yii::$app->user->isGuest) { ?>
+                        <?= Html::a('Signup', ['/auth/default/signup'], ['class' => 'btn loginbtn']) ?>
+                        <?= Html::a('Login', ['/auth/default/login'], ['class' => 'btn loginbtn']) ?>
+                    <?php }else{ ?>
+                        <?= Html::a('Profile', ['/auth/default/profile'], ['class' => 'btn loginbtn']) ?>
+                        <?= Html::a('Logout', ['/auth/default/logout'], ['class' => 'btn loginbtn']) ?>
+                    <?php } ?>
                 </li>
             </ul>
         </div>
@@ -58,24 +61,26 @@ ThemeAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.jpg"></a>
+                <a class="navbar-brand" href="#"><img class="img-responsive" src="/frontend/web/images/logo.jpg"></a>
             </div>
             <div class="collapse navbar-collapse pull-right" id="main-nav-toggle">
                 <ul class="nav navbar-nav list-unstyle">
-                    <li class="active"><a href="#">Training</a>
+                    <li class="active"><a href="#">Home</a></li>
+                    <li ><a href="#">Training</a>
                         <ul class="list-unstyle submenu">
-                            <li><a href="/site/training">Training</a></li>
                             <li><a href="#">Data Analytics Training</a></li>
+                            <li><a href="#">Corporate Training</a></li>
                         </ul>
                     </li>
-                    <li><a href="/site/placements">Placements</a></li>
-                    <li><a href="/site/consultancy">Consultancy</a></li>
-                    <li><a href="/site/resources">Resources</a></li>
-                    <li><a href="/site/blog">Blog & Community</a></li>
+                    <li><a href="#">Placements</a></li>
+                    <li><a href="#">Consultancy</a></li>
+                    <li class=""><a href="#">Resources</a></li>
+                    <li><button class="btn btn-primary">Login / Sign up</button></li>
                 </ul>
             </div>
         </div>
     </div>
+</div>
 </div>
 <?= Alert::widget() ?>
 <?= $content ?>
@@ -84,7 +89,7 @@ ThemeAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <a href="#"><img class="img-responsive" src="<?php echo Yii::$app->homeUrl?>frontend/web/images/logo.jpg"></a>
+                    <a href=""><img class="img-responsive" src="/frontend/web/images/footer.png"></a>
                     <ul class="list-unstyle scstyle">
                         <li>Follow us on:</li>
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a</li>
@@ -94,26 +99,25 @@ ThemeAsset::register($this);
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h4 class="uline">QUICK LINKS</h4>
+                    <h4 class="uline">Quick Links</h4>
                     <ul class="list-unstyle quicklinkleft">
                         <li><a href="#">Training</a></li>
                         <li><a href="#">Placements</a></li>
                         <li><a href="#">Consultancy</a></li>
-                        <li><a href="#">Campus Map & Direction</a></li>
+
                     </ul>
                     <ul class="list-unstyle quicklinkright">
-                        <li><a href="#">FAQ</a></li>
                         <li><a href="#">About Statroots</a></li>
-                        <li><a href="#">Public Safety</a></li>
-                        <li><a href="#">Site Map</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-xs-12 pull-right">
-                    <h4 class="uline">CONTACT</h4>
+                    <h4 class="uline">Contact</h4>
                     <div class="list-unstyle addr">
-                        <p class="map-maker">Statroots</br>Plot 274, Secretariat Colony, Manikonda</br>Hyderabad, 500089</p>
-                        <p class="phone">Phone: +91-7337027700</p>
-                        <p class="phone">Email: connect@statroots.com</p>
+                        <p class="map-maker">Statroots</br>XXX Campus Drive</br>Hyderabad, 500081</p>
+                        <p class="phone">+91-7337027700</p>
+                        <p class="email">connect@statroots.com</p>
                     </div>
                 </div>
             </div>
@@ -123,108 +127,19 @@ ThemeAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <p class="m0">Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2016 Statroots</p>
+                    <p class="m0">Copyright <i class="fa fa-copyright" aria-hidden="true"></i> 2017 Statroots</p>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <ul class="list-unstyle terms pull-right">
-                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
                         <li><a href="#">Privacy</a></li>
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-<div class="modal fade" id="myModallogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Login</h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-7">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary">submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="myModalsignup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Sign up / Register</h4>
-            </div>
-            <div class="modal-body">
-                <?php
-                $model = new \yeesoft\auth\models\forms\SignupForm();
-                $form = ActiveForm::begin([
-                    'id' => 'signup',
-                    'validateOnBlur' => false,
-                    'options' => ['autocomplete' => 'off'],
-                ]); ?>
-
-                <?= $form->field($model, 'username')->textInput(['maxlength' => 50]) ?>
-
-                <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput(['maxlength' => 255]) ?>
-
-                <?= $form->field($model, 'repeat_password')->passwordInput(['maxlength' => 255]) ?>
-
-                <?= $form->field($model, 'captcha')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-sm-3">{image}</div><div class="col-sm-3">{input}</div></div>',
-                    'captchaAction' => [\yii\helpers\Url::to(['/auth/captcha'])]
-                ]) ?>
-
-                <?= Html::submitButton(Yii::t('yee/auth', 'Signup'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
-
-                <div class="row registration-block">
-                    <div class="col-sm-6">
-                        <?= Html::a(Yii::t('yee/auth', "Login"), ['default/login']) ?>
-                    </div>
-                    <div class="col-sm-6 text-right">
-                        <?= Html::a(Yii::t('yee/auth', "Forgot password?"), ['default/reset-password']) ?>
-                    </div>
-                </div>
-
-                <?php ActiveForm::end() ?>
-            </div>
-        </div>
-    </div>
-</div>
 <?php $this->endBody() ?>
 </body>
 </html>
