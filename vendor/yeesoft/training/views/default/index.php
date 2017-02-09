@@ -5,7 +5,7 @@ use yeesoft\grid\GridQuickLinks;
 use yeesoft\grid\GridView;
 use yeesoft\helpers\Html;
 use yeesoft\models\User;
-use yeesoft\post\models\Post;
+use yeesoft\training\models\Training;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
@@ -13,7 +13,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel yeesoft\post\models\search\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('yee/post', 'Posts');
+$this->title = Yii::t('yee/training', 'Training');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
@@ -21,8 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('yee', 'Add New'), ['/post/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
-            <?= Html::a(Yii::t('yee/media', 'Categories'), ['/post/category/index'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('yee', 'Add New'), ['/training/default/create'], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 
@@ -31,15 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="row">
                 <div class="col-sm-6">
-                    <?= GridQuickLinks::widget([
-                        'model' => Post::className(),
-                        'searchModel' => $searchModel,
-                        'labels' => [
-                            'all' => Yii::t('yee', 'All'),
-                            'active' => Yii::t('yee', 'Published'),
-                            'inactive' => Yii::t('yee', 'Pending'),
-                        ]
-                    ]) ?>
+
                 </div>
 
                 <div class="col-sm-6 text-right">
@@ -61,48 +52,42 @@ $this->params['breadcrumbs'][] = $this->title;
                 'bulkActionOptions' => [
                     'gridId' => 'post-grid',
                     'actions' => [
-                        Url::to(['bulk-activate']) => Yii::t('yee', 'Publish'),
-                        Url::to(['bulk-deactivate']) => Yii::t('yee', 'Unpublish'),
-                        Url::to(['bulk-delete']) => Yii::t('yii', 'Delete'),
+                        Url::to(['changestatus?status=activate']) => Yii::t('yee', 'Activate'),
+                        Url::to(['changestatus?status=deactivate']) => Yii::t('yee', 'Deactivate'),
+                        Url::to(['bulkdelete']) => Yii::t('yii', 'Delete'),
                     ]
                 ],
                 'columns' => [
                     ['class' => 'yeesoft\grid\CheckboxColumn', 'options' => ['style' => 'width:10px']],
                     [
                         'class' => 'yeesoft\grid\columns\TitleActionColumn',
-                        'controller' => '/post/default',
-                        'title' => function (Post $model) {
-                            return Html::a($model->title, ['/post/default/view', 'id' => $model->id], ['data-pjax' => 0]);
+                        'controller' => '/training/default',
+                        'title' => function (\yeesoft\training\models\Training $model) {
+                            return Html::a($model->title, ['/training/default/view', 'id' => $model->id], ['data-pjax' => 0]);
                         },
                     ],
+                   'title',
+                   'content',
+//                    [
+//                        'attribute' => 'nominate',
+//                        'value'=> $model->nominate == 1 ? 'Yes' : 'No'
+//                    ],
+//                    [
+//                        'attribute' => 'is_upcoming',
+//                        'value'=> $model->is_upcoming == 1 ? 'Yes' : 'No'
+//                    ],
+                'training_date',
                     [
-                        'attribute' => 'created_by',
-                        'filter' => yeesoft\models\User::getUsersList(),
-                        'value' => function (Post $model) {
-                            return Html::a($model->author->username,
-                                ['/user/default/update', 'id' => $model->created_by],
-                                ['data-pjax' => 0]);
-                        },
-                        'format' => 'raw',
-                        'visible' => User::hasPermission('viewUsers'),
-                        'options' => ['style' => 'width:180px'],
-                    ],
-                    [
-                        'class' => 'yeesoft\grid\columns\StatusColumn',
+                        'label' => 'Current Status',
                         'attribute' => 'status',
-                        'optionsArray' => Post::getStatusOptionsList(),
-                        'options' => ['style' => 'width:60px'],
-                    ],
-                    [
-                        'class' => 'yeesoft\grid\columns\DateFilterColumn',
-                        'attribute' => 'published_at',
-                        'value' => function (Post $model) {
-                            return '<span style="font-size:85%;" class="label label-'
-                            . ((time() >= $model->published_at) ? 'primary' : 'default') . '">'
-                            . $model->publishedDate . '</span>';
+                        'value' => function ($model) {
+                            if($model->status == 1){
+                                return "Activate";
+                            }if($model->status == 0){
+                                return "Deactivate";
+                            }
+
                         },
-                        'format' => 'raw',
-                        'options' => ['style' => 'width:150px'],
                     ],
                 ],
             ]);

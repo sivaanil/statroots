@@ -5312,7 +5312,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-brand > img {
     display: block;
-    width: 100px
+    width: 200px
 }
 
 @media (min-width: 768px) {
